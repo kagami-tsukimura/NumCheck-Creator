@@ -2,8 +2,22 @@ import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
 
 const App: React.FC = () => {
-  const [number, setNumber] = useState<string>('');
+  const [number, setNumber] = useState<string>(() => {
+    const storedNumber = localStorage.getItem('checkboxAppNumber');
+    return storedNumber || '';
+  });
+
+  const [checkedCheckboxes, setCheckedCheckboxes] = useState<Set<number>>(
+    () => {
+      const storedCheckedCheckboxes = localStorage.getItem('checkedCheckboxes');
+      return new Set<number>(
+        storedCheckedCheckboxes ? JSON.parse(storedCheckedCheckboxes) : []
+      );
+    }
+  );
+
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const MAX_CHECKBOX: number = 500;
 
   useEffect(() => {
     if (inputRef.current) {
@@ -13,8 +27,27 @@ const App: React.FC = () => {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputNumber = event.target.value;
-    setNumber(inputNumber);
+    const constrainedNumber = Math.min(parseInt(inputNumber, 10), MAX_CHECKBOX);
+    setNumber(constrainedNumber.toString());
   };
+
+  const handleCheckboxChange = (checkboxNumber: number) => {
+    setCheckedCheckboxes((prevChecked) => {
+      const newChecked = new Set(prevChecked);
+      newChecked.has(checkboxNumber)
+        ? newChecked.delete(checkboxNumber)
+        : newChecked.add(checkboxNumber);
+      localStorage.setItem(
+        'checkedCheckboxes',
+        JSON.stringify(Array.from(newChecked))
+      );
+      return newChecked;
+    });
+  };
+
+  useEffect(() => {
+    localStorage.setItem('checkboxAppNumber', number);
+  }, [number]);
 
   const renderCheckboxes = (): JSX.Element[] => {
     const checkboxes: JSX.Element[] = [];
@@ -26,7 +59,12 @@ const App: React.FC = () => {
         <div key={i} className='material-checkbox'>
           <label htmlFor={`checkbox-${i}`}>{labelContent}</label>
           <br />
-          <input type='checkbox' id={`checkbox-${i}`} />
+          <input
+            type='checkbox'
+            id={`checkbox-${i}`}
+            checked={checkedCheckboxes.has(i)}
+            onChange={() => handleCheckboxChange(i)}
+          />
         </div>
       );
 
@@ -42,13 +80,14 @@ const App: React.FC = () => {
     <>
       <div className='material-input-container'>
         <input
-          type='text'
+          type='number'
           value={number}
           onChange={handleInputChange}
           placeholder='Enter a number'
           ref={inputRef}
+          max={MAX_CHECKBOX}
         />
-        <span>作成したいチェックボックスの数を入力してください</span>
+        <span>作成したいチェックボックスの数を入力してください(最大: 500)</span>
       </div>
       <div>{renderCheckboxes()}</div>
     </>
