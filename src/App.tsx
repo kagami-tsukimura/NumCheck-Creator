@@ -42,7 +42,7 @@ const App: React.FC = () => {
     <>
       <div className='material-input-container'>
         <input
-          type='text'
+          type='number'
           value={number}
           onChange={handleInputChange}
           placeholder='Enter a number'
