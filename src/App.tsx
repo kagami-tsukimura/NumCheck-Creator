@@ -4,6 +4,7 @@ import './App.css';
 const App: React.FC = () => {
   const [number, setNumber] = useState<string>('');
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const MAX_CHECKBOX: number = 500;
 
   useEffect(() => {
     if (inputRef.current) {
@@ -13,7 +14,8 @@ const App: React.FC = () => {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputNumber = event.target.value;
-    setNumber(inputNumber);
+    const constrainedNumber = Math.min(parseInt(inputNumber, 10), MAX_CHECKBOX);
+    setNumber(constrainedNumber.toString());
   };
 
   const renderCheckboxes = (): JSX.Element[] => {
@@ -47,8 +49,9 @@ const App: React.FC = () => {
           onChange={handleInputChange}
           placeholder='Enter a number'
           ref={inputRef}
+          max={MAX_CHECKBOX}
         />
-        <span>作成したいチェックボックスの数を入力してください</span>
+        <span>作成したいチェックボックスの数を入力してください(最大: 500)</span>
       </div>
       <div>{renderCheckboxes()}</div>
     </>
