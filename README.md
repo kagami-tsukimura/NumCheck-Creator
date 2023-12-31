@@ -1,46 +1,41 @@
-# Getting Started with Create React App
+# NumCheck Creator
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+NumCheck Creator は、CloudTech の問題再確認を目的として作成されたツールです。  
+CloudTechとの連携はないため、汎用的なチェックボックスツールとして使用できます。
 
-## Available Scripts
+## 概要
 
-In the project directory, you can run:
+このツールは、以下の機能を提供します。
 
-### `npm start`
+- テキストボックスに入力した数に基づいてチェックボックスを生成。
+- チェックの入った問題番号に遷移して、問題の再確認。
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 実行手順
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. プロジェクトをクローンします。
 
-### `npm test`
+   ```bash
+   git clone https://github.com/kagami-tsukimura/NumCheck-Creator.git
+   cd NumCheck-Creator
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. 依存関係をインストールします。
 
-### `npm run build`
+   ```bash
+   npm install
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. ローカルサーバーを起動します。
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   npm start
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. ブラウザで <http://localhost:3000> にアクセスすることでツールを使用します。
 
-### `npm run eject`
+## 使用方法
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. 数値入力: テキストボックスに任意の数値を入力します。
+1. チェックボックス生成: 入力した数値に基づいて、チェックボックスが生成されます。
+1. 問題のチェック: 間違えた問題など、再度確認したい特定の問題にチェックを入れます。
+1. 問題再確認: チェックの入っている問題番号に遷移して、問題の再確認を行います。
