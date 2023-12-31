@@ -10,6 +10,10 @@ CloudTechとの連携はないため、汎用的なチェックボックスツ�
 - テキストボックスに入力した数に基づいてチェックボックスを生成。
 - チェックの入った問題番号に遷移して、問題の再確認。
 
+## Demo
+
+[NumCheck Creator Demo](https://kagami-tsukimura.github.io/NumCheck-Creator/)
+
 ## 実行手順
 
 1. プロジェクトをクローンします。
