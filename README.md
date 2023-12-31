@@ -14,7 +14,7 @@ CloudTechとの連携はないため、汎用的なチェックボックスツ�
 
 [NumCheck Creator Demo](https://kagami-tsukimura.github.io/NumCheck-Creator/)
 
-## 実行手順
+## ローカル実行手順
 
 1. プロジェクトをクローンします。
 
