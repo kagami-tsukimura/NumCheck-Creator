@@ -16,6 +16,10 @@ const App: React.FC = () => {
     }
   );
 
+  const [checkedCount, setCheckedCount] = useState<number>(
+    checkedCheckboxes.size
+  );
+
   const inputRef = useRef<HTMLInputElement | null>(null);
   const MAX_CHECKBOX: number = 500;
 
@@ -24,6 +28,10 @@ const App: React.FC = () => {
       inputRef.current.focus();
     }
   }, []);
+
+  useEffect(() => {
+    setCheckedCount(checkedCheckboxes.size);
+  }, [checkedCheckboxes]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputNumber = event.target.value;
@@ -78,6 +86,9 @@ const App: React.FC = () => {
 
   return (
     <>
+      <span className='check-all'>
+        選択したチェックボックスの数: {checkedCount}
+      </span>
       <div className='material-input-container'>
         <input
           type='number'
