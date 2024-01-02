@@ -1,5 +1,16 @@
 /* App.css */
 
+.check-all {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: white;
+  padding: 5px;
+  width: 100%;
+  z-index: 1;
+}
+
 .material-input-container {
   display: flex;
   flex-direction: column;
@@ -9,6 +20,7 @@
 
 .material-input-container input {
   padding: 10px;
+  margin-top: 2.5rem;
   margin-bottom: 10px;
 }
 
