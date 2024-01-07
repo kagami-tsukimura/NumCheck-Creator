@@ -23,12 +23,12 @@
   align-items: center;
   background-color: white;
   padding: 5px;
-  margin-right: auto;
-  width: 90%;
+  margin-right: 1%;
+  width: 100%;
   z-index: 1;
 }
 
-.csv export-import-button {
+.csv .export-button {
   padding: 2px 5px;
   cursor: pointer;
   border: 1px solid #ccc;
@@ -40,6 +40,7 @@
 .import-label {
   display: inline-block;
   padding: 2px 5px;
+  margin-right: 1%;
   cursor: pointer;
   border: 1px solid #ccc;
   border-radius: 4px;

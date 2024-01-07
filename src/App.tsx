@@ -161,7 +161,7 @@ const App: React.FC = () => {
       <div className='check-all'>
         チェック : {checkedCount}
         <div className='csv'>
-          <button onClick={handleExportCSV} className='export-import-button'>
+          <button onClick={handleExportCSV} className='export-button'>
             CSVエクスポート
           </button>
           <label className='import-label' htmlFor='fileInput'>
@@ -173,7 +173,6 @@ const App: React.FC = () => {
             accept='.csv'
             ref={fileInputRef}
             onChange={handleImportCSV}
-            className='export-import-button'
             style={{ display: 'none' }}
           />
           <button onClick={unCheckedAll} className='unchecked-button'>
