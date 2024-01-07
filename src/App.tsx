@@ -148,7 +148,7 @@ const App: React.FC = () => {
   return (
     <>
       <span className='check-all'>
-        選択したチェックボックスの数: {checkedCount}
+        チェック : {checkedCount}
         <button onClick={handleExportCSV} className='export-import-button'>
           CSVエクスポート
         </button>
