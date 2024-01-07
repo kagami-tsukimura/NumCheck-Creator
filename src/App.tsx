@@ -113,7 +113,7 @@ const App: React.FC = () => {
       const reader = new FileReader();
       reader.onload = (e) => {
         const csvContent = e.target?.result as string;
-        // CSVデータをパースし、必要な処理を実行
+        // CSVデータをパース
         parseAndApplyCSVData(csvContent);
       };
 
@@ -124,7 +124,7 @@ const App: React.FC = () => {
   const parseAndApplyCSVData = (csvContent: string) => {
     const lines = csvContent.trim().split('\n');
 
-    // 最初の行が "チェック一覧" であれば、スキップする
+    // "チェック一覧" はスキップ
     if (lines[0].trim() === '"チェック一覧"') {
       lines.shift();
     }
