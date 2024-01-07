@@ -21,6 +21,7 @@ const App: React.FC = () => {
   );
 
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
   const MAX_CHECKBOX: number = 500;
 
   useEffect(() => {
@@ -84,10 +85,85 @@ const App: React.FC = () => {
     return checkboxes;
   };
 
+  const handleExportCSV = () => {
+    // CSVデータの生成
+    const checkboxes = Array.from(checkedCheckboxes)
+      .map((checkbox) => `"${checkbox}"`)
+      .join(',');
+
+    const csvData = `"チェック一覧",${checkboxes}`;
+
+    const completeCSVData = `"${number}"\n${csvData}`;
+
+    const blob = new Blob([completeCSVData], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'checkbox_data.csv';
+    a.click();
+
+    URL.revokeObjectURL(url);
+  };
+
+  const handleImportCSV = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const csvContent = e.target?.result as string;
+        // CSVデータをパース
+        parseAndApplyCSVData(csvContent);
+      };
+
+      reader.readAsText(file);
+    }
+  };
+
+  const parseAndApplyCSVData = (csvContent: string) => {
+    const lines = csvContent.trim().split('\n');
+
+    // "チェック一覧" はスキップ
+    if (lines[0].trim() === '"チェック一覧"') {
+      lines.shift();
+    }
+
+    const [importedNumber, ...importedCheckboxes] = lines
+      .map((line) => line.split(',').map((item) => item.replace(/"/g, '')))
+      .flat();
+
+    setNumber(importedNumber);
+    setCheckedCheckboxes(new Set(importedCheckboxes.map(Number)));
+    console.log(importedNumber);
+
+    // ローカルストレージにも保存
+    localStorage.setItem('checkboxAppNumber', importedNumber);
+    localStorage.setItem(
+      'checkedCheckboxes',
+      JSON.stringify(importedCheckboxes.map(Number))
+    );
+  };
+
   return (
     <>
       <span className='check-all'>
-        選択したチェックボックスの数: {checkedCount}
+        チェック : {checkedCount}
+        <button onClick={handleExportCSV} className='export-import-button'>
+          CSVエクスポート
+        </button>
+        <label className='import-label' htmlFor='fileInput'>
+          CSVインポート
+        </label>
+        <input
+          id='fileInput'
+          type='file'
+          accept='.csv'
+          ref={fileInputRef}
+          onChange={handleImportCSV}
+          className='export-import-button'
+          style={{ display: 'none' }}
+        />
       </span>
       <div className='material-input-container'>
         <input
