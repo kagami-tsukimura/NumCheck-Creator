@@ -4,26 +4,33 @@
   flex-direction: row;
   align-items: center;
   background-color: white;
+  padding-top: 0.2em;
+  padding-left: 0.5em;
+  width: 100%;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.export-button:hover,
+.import-label:hover,
+.unchecked-button:hover {
+  background-color: #dcdcdc;
+}
+
+.csv {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  align-items: center;
+  background-color: white;
   padding: 5px;
+  margin-right: 1%;
   width: 100%;
   z-index: 1;
 }
 
-.export-import-button {
-  display: inline-block;
+.export-button {
   padding: 2px 5px;
-  margin-left: auto;
-  cursor: pointer;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #f5f5f5;
-  transition: background-color 0.3s;
-}
-.check-all label.import-label {
-  display: inline-block;
-  padding: 2px 5px;
-  margin-right: 1rem;
-  margin-left: 1.5rem;
   cursor: pointer;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -31,21 +38,36 @@
   transition: background-color 0.3s;
 }
 
-.export-import-button:hover,
-.check-all label.import-label:hover {
-  background-color: #e0e0e0;
+.import-label {
+  display: inline-block;
+  padding: 2px 5px;
+  margin-right: 1%;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  transition: background-color 0.3s;
+}
+
+.unchecked-button {
+  padding: 2px 5px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  transition: background-color 0.3s;
 }
 
 .material-input-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .material-input-container input {
   padding: 10px;
-  margin-top: 2.5rem;
+  margin-top: 2.8rem;
   margin-bottom: 10px;
 }
 
