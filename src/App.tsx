@@ -145,36 +145,51 @@ const App: React.FC = () => {
     );
   };
 
+  const unCheckedAll = () => {
+    const confirmDelete = window.confirm(
+      'チェックをすべて外します。よろしいですか？'
+    );
+
+    if (confirmDelete) {
+      setCheckedCheckboxes(new Set());
+      localStorage.removeItem('checkedCheckboxes');
+    }
+  };
+
   return (
     <>
-      <span className='check-all'>
+      <div className='check-all'>
         チェック : {checkedCount}
-        <button onClick={handleExportCSV} className='export-import-button'>
-          CSVエクスポート
-        </button>
-        <label className='import-label' htmlFor='fileInput'>
-          CSVインポート
-        </label>
-        <input
-          id='fileInput'
-          type='file'
-          accept='.csv'
-          ref={fileInputRef}
-          onChange={handleImportCSV}
-          className='export-import-button'
-          style={{ display: 'none' }}
-        />
-      </span>
+        <div className='csv'>
+          <button onClick={handleExportCSV} className='export-import-button'>
+            CSVエクスポート
+          </button>
+          <label className='import-label' htmlFor='fileInput'>
+            CSVインポート
+          </label>
+          <input
+            id='fileInput'
+            type='file'
+            accept='.csv'
+            ref={fileInputRef}
+            onChange={handleImportCSV}
+            className='export-import-button'
+            style={{ display: 'none' }}
+          />
+          <button onClick={unCheckedAll} className='unchecked-button'>
+            チェックをすべて外す
+          </button>
+        </div>
+      </div>
       <div className='material-input-container'>
         <input
           type='number'
           value={number}
           onChange={handleInputChange}
-          placeholder='Enter a number'
+          placeholder='Checkbox (Max: 500)'
           ref={inputRef}
           max={MAX_CHECKBOX}
         />
-        <span>作成したいチェックボックスの数を入力してください(最大: 500)</span>
       </div>
       <div>{renderCheckboxes()}</div>
     </>
