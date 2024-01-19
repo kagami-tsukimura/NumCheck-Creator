@@ -146,7 +146,7 @@ const App: React.FC = () => {
   };
 
   const unCheckedAll = () => {
-    // チェック全解除
+    // チェックボックス全解除
     const confirmDelete = window.confirm(
       'チェックをすべて外します。よろしいですか？'
     );
